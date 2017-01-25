@@ -1,0 +1,5 @@
+#!/usr/bin/env ruby
+
+`git remote -v`.scan(/heroku.com:(.*).git/).flatten.uniq.each do |name|
+  puts `heroku restart --app=#{name}`
+end

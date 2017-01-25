@@ -1,0 +1,62 @@
+#!/usr/bin/env ruby
+
+require "faraday"
+require "json"
+
+base_dir = "./reports/#{Time.now.strftime("%Y%m%d-%H%M%S")}"
+config = JSON.load(File.read("./config.json"))
+
+session = {
+  targets:  config["targets"],
+  duration: config["duration"],
+  rate:     config["rate"]
+}
+
+endpoints = []
+
+config["endpoints"].each do |url|
+  print "Starting test on #{url}: "
+  resp = Faraday.post(url + "/run") do |req|
+    req.body = JSON.dump(session)
+  end
+
+  if resp.success?
+    endpoints << url
+    puts "OK"
+  else
+    puts "Error"
+  end
+end
+
+if endpoints.size == 0
+  puts "No tests running"
+  exit
+end
+
+puts "Waiting for test to finish"
+loop do
+  num = 0
+  endpoints.each do |url|
+    num += 1 if Faraday.get(url + "/state").body.strip == "done"
+  end
+
+  break if num == endpoints.size
+  sleep 1
+end
+
+puts "Test finished, downloading results"
+`mkdir -p #{base_dir}`
+endpoints.each_with_index do |url, i|
+  `curl -s -o #{base_dir}/report-#{i} #{url}/report`
+end
+
+inputs = Dir["#{base_dir}/report-*"].join(",")
+result1 = `./bin/vegeta_osx report -inputs=#{inputs}`
+result2 = `./bin/vegeta_osx report -inputs=#{inputs} -reporter=hist[0,100ms,200ms,300ms,400ms,500ms]`
+`./bin/vegeta_osx report -inputs=#{inputs} -reporter=plot > #{base_dir}/plot.html`
+
+File.open("#{base_dir}/plot.html", "a") do |f|
+  f.write("<hr/><pre>#{result1}</pre><hr/><pre>#{result2}</pre>")
+end
+
+`open #{base_dir}/plot.html`
