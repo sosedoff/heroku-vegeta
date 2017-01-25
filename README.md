@@ -1,6 +1,9 @@
 # heroku-vegeta
 
-Experimental application that utilizes Heroku as a distributed load testing tool.
+Run [vegeta](https://github.com/tsenart/vegeta) as a distributed load testing tool
+on Heroku for free. This project has two goals: explore diffent ways to deploy
+applications on heroku platform and provide a simple tool to easily run various
+load testing scenarios. 
 
 ## Usage
 
