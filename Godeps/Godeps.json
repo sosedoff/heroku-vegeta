@@ -1,0 +1,15 @@
+{
+	"ImportPath": "github.com/sosedoff/vegeta-server",
+	"GoVersion": "go1.7",
+	"GodepVersion": "v78",
+	"Packages": [
+		"./..."
+	],
+	"Deps": [
+		{
+			"ImportPath": "github.com/gorilla/websocket",
+			"Comment": "v1.0.0-40-g0868951",
+			"Rev": "0868951cdb8e69bc42df4598bdc6164ff2f1a072"
+		}
+	]
+}
