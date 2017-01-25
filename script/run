@@ -14,8 +14,10 @@ session = {
 
 endpoints = []
 
-config["endpoints"].each do |url|
+`git remote -v`.scan(/heroku.com:(.*).git/).flatten.uniq.each do |name|
+  url = "http://#{name}.herokuapp.com"
   print "Starting test on #{url}: "
+  
   resp = Faraday.post(url + "/run") do |req|
     req.body = JSON.dump(session)
   end

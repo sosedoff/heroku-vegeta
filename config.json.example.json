@@ -1,0 +1,6 @@
+{
+  "nodes": 3,
+  "targets": "GET https://github.com",
+  "duration": "30s",
+  "rate": "50"
+}

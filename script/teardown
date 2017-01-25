@@ -1,14 +1,6 @@
 #!/usr/bin/env ruby
-require "json"
 
 `git remote -v`.scan(/heroku.com:(.*).git/).flatten.uniq.each do |name|
   puts `heroku apps:destroy #{name} --confirm=#{name}`
   `git remote rm #{name}`
-end
-
-config = JSON.load(File.read("./config.json"))
-config["endpoints"] = []
-
-File.open("config.json", "w") do |f|
-  f.write JSON.pretty_generate(config)
 end
