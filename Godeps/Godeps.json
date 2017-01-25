@@ -1,5 +1,5 @@
 {
-	"ImportPath": ".",
+	"ImportPath": "github.com/sosedoff/heroku-vegeta",
 	"GoVersion": "go1.7",
 	"GodepVersion": "v78",
 	"Packages": [
