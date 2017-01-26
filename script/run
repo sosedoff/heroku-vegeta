@@ -14,7 +14,7 @@ session = {
 
 endpoints = []
 
-`git remote -v`.scan(/heroku.com:(.*).git/).flatten.uniq.each do |name|
+`git remote | grep vegeta`.strip.split("\n").each do |name|
   url = "http://#{name}.herokuapp.com"
   print "Starting test on #{url}: "
   

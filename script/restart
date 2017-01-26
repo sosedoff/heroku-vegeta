@@ -1,0 +1,5 @@
+#!/bin/bash
+
+for app in $(git remote | grep vegeta); do
+  heroku restart --app=$app
+done
