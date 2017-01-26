@@ -62,3 +62,5 @@ File.open("#{base_dir}/plot.html", "a") do |f|
 end
 
 `open #{base_dir}/plot.html`
+puts "============================================================="
+puts "Please dont forget to remote apps afer use: ./script/teardown"
