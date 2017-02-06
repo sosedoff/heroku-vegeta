@@ -63,4 +63,4 @@ end
 
 `open #{base_dir}/plot.html`
 puts "============================================================="
-puts "Please dont forget to remote apps afer use: ./script/teardown"
+puts "Please dont forget to remove apps afer use: ./script/teardown"
