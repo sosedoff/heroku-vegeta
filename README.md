@@ -5,6 +5,8 @@ on Heroku for free. This project has two goals: explore diffent ways to deploy
 applications on heroku platform and provide a simple tool to easily run various
 load testing scenarios. 
 
+![Example Plot](/plot.png)
+
 ## Usage
 
 Clone repository:
