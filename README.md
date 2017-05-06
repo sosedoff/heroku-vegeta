@@ -38,6 +38,12 @@ Once done, you can start the test:
 ./script/run
 ```
 
+Make sure to remove all test apps after you're done:
+
+```
+./script/teardown
+```
+
 ## Config
 
 Example configuration for testing:
