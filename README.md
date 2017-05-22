@@ -65,3 +65,9 @@ Options:
 - `targets` - List of URLS to hit
 - `duration` - Test duration. `10s, 30s, 1m, 5m`, etc
 - `rate` - Number of requests per second per node
+
+## License
+
+The MIT License (MIT)
+
+Copyright (c) 2017 Dan Sosedoff <dan.sosedoff@gmail.com>
